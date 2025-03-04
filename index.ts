@@ -10,7 +10,7 @@ class Key {
     this.errorVector = options.errorVector
   }
 
-  saveFileToDirectory(directory?: string) {
+  saveFileToDirectory(directory?: string) : string{
     if (directory === undefined) {
       directory = "."
     }
@@ -29,7 +29,7 @@ export class PublicKey extends Key {
       this.B = Bvector
     }
   }
-  protected randomize() {
+  protected randomize() : number{
     return Math.floor(Math.random() * this.modulus)
   }
   protected getRandomValuesForA() {
@@ -70,11 +70,11 @@ export class PublicKey extends Key {
   //   this.B = vector
   // }
 
-  getA() {
+  getA() : number[]{
     return this.A
   }
 
-  getB() {
+  getB() : number[] {
     return this.B
   }
 

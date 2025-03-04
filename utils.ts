@@ -68,7 +68,7 @@ export function convertIntArrayToBitArray(input: number) : number[] {
 }
 
 
-export function encryptString(value: string, publicKey: PublicKey) {
+export function encryptString(value: string, publicKey: PublicKey) : EncryptedVector[][] {
   const intArray = convertStringToIntArray(value)
   let results: EncryptedVector[][] = []
 
@@ -94,7 +94,7 @@ function binaryToString(binary: string): string {
   return result;
 }
 
-export function decryptData(data: EncryptedVector[][], privateKey: PrivateKey) {
+export function decryptData(data: EncryptedVector[][], privateKey: PrivateKey) : string {
   let finalString = ''
   for (let i = 0; i < data.length; i++) {
     let tempArray = []
