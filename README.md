@@ -1,22 +1,20 @@
 # lwe-encrypt
 
 
-# What is this library
+# What is this library's purpose?
 This is a Typescript implementation of the Learning With Errors crypto algorithim. The
 LWE is a quantum-resistant algorithim based on matrices. Encoded information is in the
 form of a vector. 
 
-To read more about LWE, you can refer to this Medium article or the original paper published in 2005. 
+To read more about LWE, you can refer to this [Medium article](https://medium.com/asecuritysite-when-bob-met-alice/learning-with-errors-and-ring-learning-with-errors-23516a502406) or the original paper published in 2005. 
 
-# Who should use this library
-If you interested in securing information outside of the usual methods presented, i.e. RSA, PGP, etc. 
+# Who should use this library?
+If you are interested in securing information outside of the usual methods presented, i.e. RSA, PGP, etc. 
 
-# Caveats
-This library has not been audited. Use in production systems at your own risk. 
 
 # How to use
 
-```
+```ts
 import { PublicKey, PrivateKey } from '@reese-codes/lwe-encrypt'
 import { encryptString, decryptString } from '@reese-codes/lwe-encrypt/utils'
 
