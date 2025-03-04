@@ -6,5 +6,6 @@
     ".": "./index.ts",
     "./utils": "./utils.ts",
     "./types": "./types.ts"
-  }
+  },
+  "excludes": "./index.test.ts"
 }

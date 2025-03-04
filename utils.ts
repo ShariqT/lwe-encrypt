@@ -1,4 +1,4 @@
-import type { PrivateKey, PublicKey } from ".";
+import type { PrivateKey, PublicKey } from "./index";
 import type { EncryptedVector } from "./types";
 
 
