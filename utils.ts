@@ -1,6 +1,15 @@
 import type { PrivateKey, PublicKey } from ".";
 import type { EncryptedVector } from "./types";
 
+
+
+
+/**
+ * 
+ * @param max 
+ * @param amountToReturn 
+ * @returns 
+ */
 function getRandomNumber(max: number, amountToReturn: number): number[] {
     let ret: number[] = []
     for( let i = 0; i  < amountToReturn; i++){
@@ -10,7 +19,12 @@ function getRandomNumber(max: number, amountToReturn: number): number[] {
   }
 
  
-
+/**
+ * 
+ * @param publicKey 
+ * @param bitToEncrypt 
+ * @returns 
+ */
 export function encryptBit(publicKey: PublicKey, bitToEncrypt: number) : EncryptedVector {
   let sampleRate = Math.floor(publicKey.numberOfEquations / 2)
   const samples = getRandomNumber(publicKey.numberOfEquations, sampleRate)
@@ -32,6 +46,12 @@ export function encryptBit(publicKey: PublicKey, bitToEncrypt: number) : Encrypt
   }
 }
 
+/**
+ * 
+ * @param secretKey instance of a private key
+ * @param encrytedData instance of an array of arrays of EncryptedVectors
+ * @returns number
+ */
 export function decryptBit(secretKey: PrivateKey, encrytedData: EncryptedVector) : number {
   const bitCheck = Math.floor(secretKey.modulus / 2);
   const valFromVector = encrytedData.v - secretKey.secretValue * encrytedData.u
@@ -48,11 +68,21 @@ export function decryptBit(secretKey: PrivateKey, encrytedData: EncryptedVector)
   return 0
 }
 
+/**
+ *  Note: shkouldn't be any reason to use this function; use the encryptString and decryptData functions instead
+ * @param str 
+ * @returns Uint8Array
+ */
 export function convertStringToIntArray(str: string) : Uint8Array<ArrayBufferLike> {
   const encoder = new TextEncoder()
   return encoder.encode(str)
 }
 
+/**
+ *  Note: shkouldn't be any reason to use this function; use the encryptString and decryptData functions instead
+ * @param input 
+ * @returns 
+ */
 export function convertIntArrayToBitArray(input: number) : number[] {
   if (input < 0) {
     throw new Error("The number must be non-negative.");
@@ -67,7 +97,12 @@ export function convertIntArrayToBitArray(input: number) : number[] {
   return binaryArray.length > 0 ? binaryArray : [0];
 }
 
-
+/**
+ * 
+ * @param value string to encrypt
+ * @param publicKey instance of the PublicKey with B values generated
+ * @returns EncryptedVector[][]
+ */
 export function encryptString(value: string, publicKey: PublicKey) : EncryptedVector[][] {
   const intArray = convertStringToIntArray(value)
   let results: EncryptedVector[][] = []
@@ -83,6 +118,12 @@ export function encryptString(value: string, publicKey: PublicKey) : EncryptedVe
   return results
 }
 
+/**
+ *  Note: shkouldn't be any reason to use this function; use the encryptString and decryptData functions instead
+ * @param binary string of 1s and 0s
+ * @returns string in UTF8
+ */
+
 function binaryToString(binary: string): string {
   const bytes = binary.split(' ');
   let result = '';
@@ -94,6 +135,12 @@ function binaryToString(binary: string): string {
   return result;
 }
 
+/**
+ * 
+ * @param data This is an array of arrays of EncryptedVectors
+ * @param privateKey instance of a PrivateKey
+ * @returns string
+ */
 export function decryptData(data: EncryptedVector[][], privateKey: PrivateKey) : string {
   let finalString = ''
   for (let i = 0; i < data.length; i++) {
