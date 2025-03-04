@@ -17,8 +17,8 @@ This library has not been audited. Use in production systems at your own risk.
 # How to use
 
 ```
-import { PublicKey, PrivateKey } from 'lwe-encrypt'
-import { encryptString, decryptString } from 'lwe-encrypt/utils'
+import { PublicKey, PrivateKey } from '@reese-codes/lwe-encrypt'
+import { encryptString, decryptString } from '@reese-codes/lwe-encrypt/utils'
 
 const errs = []
 for(let i = 0; i < 1024; i++){
