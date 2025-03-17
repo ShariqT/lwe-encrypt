@@ -275,3 +275,15 @@ test("loads public key from a file", async () => {
   expect(key.numberOfEquations).toEqual(13)
   await Bun.file("pub.lwe.key").delete()
 })
+
+test("loads valid JSON into a Public Key", () => {
+  const keydata = {
+    Aval: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13],
+    Bval: [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ],
+    eq: 13
+  }
+  const key = PublicKey.fromJSON(keydata)
+  expect(key.getA()).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13])
+  expect(key.getB()).toEqual( [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ])
+  expect(key.numberOfEquations).toEqual(13)
+})
