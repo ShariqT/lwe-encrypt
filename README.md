@@ -16,7 +16,8 @@ If you are interested in securing information outside of the usual methods prese
 
 ```ts
 import { PublicKey, PrivateKey } from '@reese-codes/lwe-encrypt'
-import { encryptString, decryptString } from '@reese-codes/lwe-encrypt/utils'
+import { KeyOptions } from '@reese-codes/lwe-encrypt/types'
+import { encryptString, decryptData } from '@reese-codes/lwe-encrypt/utils'
 
 // set up an array of error values; this MUST match the 
 // numberOfEquations parameter in the KeyOptions type
@@ -60,6 +61,9 @@ PublicKey.fromKeyFile("pub.lwe.key")
 
 //create a PrivatecKey instance from a pub.lwe.key file
 PrivateKey.fromKeyFile("sec.lwe.key")
+
+//load a PublicKey from JSON data 
+PublicKey.fromJSON(keydata)
 
 
 ```

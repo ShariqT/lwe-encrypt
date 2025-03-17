@@ -47,9 +47,18 @@ export class PublicKey extends Key {
       numberOfEquations: keydata.eq
     }, keydata.Bval)
     key.setAVec(keydata.Aval)
-    // key.setBVec(keydata.Bval)
     return key
   }
+
+  static fromJSON(keydata: PublicKeySaveDataFormat) : PublicKey {
+    const key = new PublicKey({
+      errorVector: [],
+      modNumber: 13,
+      numberOfEquations: keydata.eq
+    }, keydata.Bval)
+    key.setAVec(keydata.Aval)
+    return key
+  } 
 
   setAVec(vector: number[]) {
     // check to make sure that the vector array is not longer than the number of equations
@@ -63,12 +72,6 @@ export class PublicKey extends Key {
     })
     this.A = vector
   }
-  // setBVec(vector: number[]) {
-  //   if (this.B.length > 0) {
-  //     throw new Error("B values have already been generated for this key. Do not generate again!")
-  //   }
-  //   this.B = vector
-  // }
 
   getA() : number[]{
     return this.A
