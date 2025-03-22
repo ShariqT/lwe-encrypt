@@ -65,5 +65,6 @@ PrivateKey.fromKeyFile("sec.lwe.key")
 //load a PublicKey from JSON data 
 PublicKey.fromJSON(keydata)
 
-
+//export PublicKey data as a JSON Object
+pubKey.toJSON()
 ```
