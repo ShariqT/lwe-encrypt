@@ -43,7 +43,7 @@ export class PublicKey extends Key {
     const keydata : PublicKeySaveDataFormat = await keyfile.json()
     const key = new PublicKey({
       errorVector: [],
-      modNumber: 13,
+      modNumber: keydata.mod,
       numberOfEquations: keydata.eq
     }, keydata.Bval)
     key.setAVec(keydata.Aval)
@@ -53,7 +53,7 @@ export class PublicKey extends Key {
   static fromJSON(keydata: PublicKeySaveDataFormat) : PublicKey {
     const key = new PublicKey({
       errorVector: [],
-      modNumber: 13,
+      modNumber: keydata.mod,
       numberOfEquations: keydata.eq
     }, keydata.Bval)
     key.setAVec(keydata.Aval)
@@ -95,7 +95,8 @@ export class PublicKey extends Key {
     await Bun.write(path  + "/pub.lwe.key", JSON.stringify({
         Aval: this.A,
         Bval: this.B,
-        eq: this.numberOfEquations
+        eq: this.numberOfEquations,
+        mod: this.modulus
       })
     )
   }
@@ -104,7 +105,8 @@ export class PublicKey extends Key {
     return {
       Aval: this.A,
       Bval: this.B,
-      eq: this.numberOfEquations
+      eq: this.numberOfEquations,
+      mod: this.modulus
     }
   }
 
