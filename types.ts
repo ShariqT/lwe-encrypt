@@ -16,7 +16,8 @@ export interface PrivateKeySaveDataFormat {
 export interface PublicKeySaveDataFormat {
   Aval: number[],
   Bval: number[],
-  eq: number
+  eq: number,
+  mod: ModulusValue
 }
 
 export interface EncryptedVector {
