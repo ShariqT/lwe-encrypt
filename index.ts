@@ -100,6 +100,14 @@ export class PublicKey extends Key {
     )
   }
 
+  toJSON(){
+    return {
+      Aval: this.A,
+      Bval: this.B,
+      eq: this.numberOfEquations
+    }
+  }
+
 }
 
 export class PrivateKey extends Key {

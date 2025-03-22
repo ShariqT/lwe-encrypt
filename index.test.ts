@@ -287,3 +287,25 @@ test("loads valid JSON into a Public Key", () => {
   expect(key.getB()).toEqual( [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ])
   expect(key.numberOfEquations).toEqual(13)
 })
+
+
+test("returns valid JSON for a Public Key", () => {
+  const errs = []
+  for(let i = 0; i < 1024; i++){
+    errs.push(Math.floor(Math.random() * 4))
+  }
+  const opts: KeyOptions = {
+    modNumber: 3557,
+    errorVector: errs,
+    numberOfEquations: 1024
+  }
+  const secretValue = 200
+
+  const pubKey = new PublicKey(opts)
+  pubKey.generateKeyValues(secretValue)
+  const keydata = pubKey.toJSON()
+  expect(Object.keys(keydata).includes('Aval')).toBe(true)
+  expect(Object.keys(keydata).includes('Bval')).toBe(true)
+  expect(Object.keys(keydata).includes('eq')).toBe(true)
+  
+})
