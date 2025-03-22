@@ -100,7 +100,7 @@ export class PublicKey extends Key {
     )
   }
 
-  toJSON(){
+  toJSON() : PublicKeySaveDataFormat{
     return {
       Aval: this.A,
       Bval: this.B,
